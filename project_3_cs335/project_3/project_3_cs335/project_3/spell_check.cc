@@ -69,7 +69,7 @@ int testSpellingWrapper(int argument_count, char** argument_list) {
       }
       // b) Removing one character from the word
       string modified_wordB = document_word;
-      modified_wordB.erase(i);
+      modified_wordB.erase(modified_wordB.begin()+i);
       if(Dictionary_table.Contains(modified_wordB)){
         cout << document_word << " -> " << modified_wordB << " ** case B" << endl;
       }
