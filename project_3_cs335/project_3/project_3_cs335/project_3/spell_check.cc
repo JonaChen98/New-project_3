@@ -6,6 +6,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <algorithm>
 using namespace std;
 
 int testSpellingWrapper(int argument_count, char** argument_list) {
@@ -52,8 +53,6 @@ int testSpellingWrapper(int argument_count, char** argument_list) {
     }
   
   //if not do error checkings
-  
-  // b) Removing one character from the word
   // c) Swapping adjacent characters in the word
   if(!Dictionary_table.Contains(document_word)){
 
@@ -74,11 +73,15 @@ int testSpellingWrapper(int argument_count, char** argument_list) {
         cout << document_word << " -> " << modified_wordB << " ** case B" << endl;
       }
 
+      if(i< document_word.length()){
+        string modified_wordC = document_word;
+        swap(modified_wordC[i],modified_wordC[i+1]);
+
+        if(Dictionary_table.Contains(modified_wordC)){
+          cout << document_word << " -> " << modified_wordC << " ** case C" << endl;
+        }
+      }
     }
-
-
-
-
   }
   }
 } 
