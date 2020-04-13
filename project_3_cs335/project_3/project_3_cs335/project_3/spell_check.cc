@@ -50,11 +50,28 @@ int testSpellingWrapper(int argument_count, char** argument_list) {
     if(Dictionary_table.Contains(document_word)){
       cout << document_word << " is CORRECT" << endl;
     }
-  }
+  
   //if not do error checkings
-  //a) Adding one character in any possible position
-  //b) Removing one character from the word
-  //c) Swapping adjacent characters in the word
+  
+  // b) Removing one character from the word
+  // c) Swapping adjacent characters in the word
+  if(!Dictionary_table.Contains(document_word)){
+
+    //a) Adding one character in any possible position
+    for (int i = 0; i < document_word.length()+1; i++){
+      for(char ch = 'a'; ch <'z'; ch++){
+        string modified_word = document_word;
+        modified_word.insert(i,1,ch);
+        if(Dictionary_table.Contains(modified_word)){
+          // <word3> -> <alternate word> ** case <TYPE: A, B or C>
+          cout << document_word << " -> " << modified_word << " ** case A" << endl;
+        }
+   
+
+      }
+    }
+  }
+  }
 } 
 
 
