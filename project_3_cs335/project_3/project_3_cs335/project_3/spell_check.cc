@@ -60,16 +60,25 @@ int testSpellingWrapper(int argument_count, char** argument_list) {
     //a) Adding one character in any possible position
     for (int i = 0; i < document_word.length()+1; i++){
       for(char ch = 'a'; ch <'z'; ch++){
-        string modified_word = document_word;
-        modified_word.insert(i,1,ch);
-        if(Dictionary_table.Contains(modified_word)){
+        string modified_wordA = document_word;
+        modified_wordA.insert(i,1,ch);
+        if(Dictionary_table.Contains(modified_wordA)){
           // <word3> -> <alternate word> ** case <TYPE: A, B or C>
-          cout << document_word << " -> " << modified_word << " ** case A" << endl;
+          cout << document_word << " -> " << modified_wordA << " ** case A" << endl;
         }
-   
-
       }
+      // b) Removing one character from the word
+      string modified_wordB = document_word;
+      modified_wordB.erase(i);
+      if(Dictionary_table.Contains(modified_wordB)){
+        cout << document_word << " -> " << modified_wordB << " ** case B" << endl;
+      }
+
     }
+
+
+
+
   }
   }
 } 
