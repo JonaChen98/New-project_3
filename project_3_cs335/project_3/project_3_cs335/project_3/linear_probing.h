@@ -5,7 +5,7 @@
 #include <algorithm>
 #include <functional>
 
-
+//change offset and find probes to accomodate for linear probing otherwise same as quadratic probing
 namespace {
 
 // Internal method to test if a positive number is prime.
@@ -98,14 +98,17 @@ class HashTableLinear {
   }
   
   size_t Public_Count_Collisions(){
-    return collisions;
+    int count_collisions = collisions;
+    return count_collisions;
   }
   int table_size(){
-    return array_.size();
+    int table_size = array_.size();
+    return table_size;
   }
 
   int Num_elements(){
-    return current_size_;
+    int Number_of_elements = current_size_;
+    return Number_of_elements;
   }
 
   float Loadfactor(){
@@ -136,6 +139,7 @@ class HashTableLinear {
 
   std::vector<HashEntry> array_;
   size_t current_size_;
+  
  
   size_t private_get_probes(const HashedObj& x) const{
     size_t offset = 1;

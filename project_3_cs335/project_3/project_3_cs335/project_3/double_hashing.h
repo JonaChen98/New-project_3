@@ -5,7 +5,8 @@
 #include <algorithm>
 #include <functional>
 
-
+// only difference is find probes and find pose just have to change the offsets to accomadate for how double hashing inputs data into table
+//otherwise basically the same as quadratic
 namespace {
 
 // Internal method to test if a positive number is prime.
@@ -116,7 +117,12 @@ class HashTableDouble {
 
     return private_get_probes(x);
   }
-    int r_value = 73;
+  void set_r_value(const int& rvalue){
+
+    r_value = rvalue;
+
+  }
+    
   
 
  private:        
@@ -134,11 +140,12 @@ class HashTableDouble {
 
   std::vector<HashEntry> array_;
   size_t current_size_;
- 
+  int r_value;
+ // change how get probes works for double hashing 
   size_t private_get_probes(const HashedObj& x) const{
     static std::hash<HashedObj> hf;
-    //setting R valuse to 97 just pick random prime less that table size
-    size_t offset = ((73- (hf(x) % 73))% array_.size()); 
+    //setting R valuse to 73 just pick random prime less that table size
+    size_t offset = ((r_value- (hf(x) % r_value))% array_.size()); 
     size_t current_pos = InternalHash(x);
       int probes = 0;
     while (array_[current_pos].info_ != EMPTY &&
@@ -156,12 +163,12 @@ class HashTableDouble {
   bool IsActive(size_t current_pos) const
   { return array_[current_pos].info_ == ACTIVE; }
   
-  
+  // changed offset to accomadate for double hashing implementation
   size_t FindPos(const HashedObj & x) const {
     size_t current_pos = InternalHash(x);
      static std::hash<HashedObj> hf;
     //setting R valuse to 73 
-    size_t offset = ((73 - (hf(x) % 73))% array_.size());      
+    size_t offset = ((r_value - (hf(x) % r_value))% array_.size());      
     while (array_[current_pos].info_ != EMPTY &&
 	   array_[current_pos].element_ != x) {
        collisions++;
